@@ -11,8 +11,15 @@
   function applyTheme() {
     const dark = (preference || (systemTheme.matches ? 'dark' : 'light')) === 'dark';
     document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-    document.querySelector('meta[name="theme-color"]').content = dark ? '#131722' : '#f6f7f9';
-    document.querySelector('#theme-toggle')?.setAttribute('aria-pressed', String(dark));
+    document.querySelector('meta[name="theme-color"]').content = dark ? '#161616' : '#f5f5f5';
+    const toggle = document.querySelector('#theme-toggle');
+    if (toggle) {
+      const mode = `SideFX/Houdini ${dark ? 'Dark' : 'Light'}`;
+      toggle.setAttribute('aria-pressed', String(dark));
+      toggle.setAttribute('aria-label', `${mode} mode`);
+      toggle.title = `Switch to SideFX/Houdini ${dark ? 'Light' : 'Dark'} mode`;
+      toggle.querySelector('.theme-label').textContent = mode;
+    }
   }
 
   applyTheme();

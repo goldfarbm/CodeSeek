@@ -193,3 +193,7 @@ Parser and built-in lesson tests use Node's built-in test runner, without depend
 node --test tests/*.test.mjs
 python3 -m unittest discover -s tests -p "test_*.py"
 ```
+
+## SideFX/Houdini colour modes
+
+Use the header’s **SideFX/Houdini Light / Dark** button to switch modes. CodeSeek follows the system appearance until you choose a mode, then remembers your choice in this browser. Both palettes follow [the working colour guide](sidefx-houdini-colour-guide.md): neutral surfaces, shared `#FF6600` orange accents, Cool Gray 8 supporting graphics, and black text on orange actions. Light mode uses black text; dark mode uses white and light grey text on charcoal surfaces. The palettes cover lessons, file exploration, and the description editor.
