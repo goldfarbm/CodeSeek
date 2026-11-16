@@ -1,0 +1,266 @@
+[
+  {
+    "language": "JavaScript",
+    "tab": "Functions",
+    "source": "javascript/greeting.js",
+    "initialLine": 2
+  },
+  {
+    "language": "JavaScript",
+    "tab": "Arrays & loops",
+    "source": "javascript/favorites.js",
+    "initialLine": 4
+  },
+  {
+    "language": "JavaScript",
+    "tab": "Conditionals",
+    "source": "javascript/access.js",
+    "initialLine": 4
+  },
+  {
+    "language": "Python",
+    "tab": "Functions",
+    "source": "python/greeting.py",
+    "initialLine": 2
+  },
+  {
+    "language": "Python",
+    "tab": "Lists & loops",
+    "source": "python/shopping.py",
+    "initialLine": 5
+  },
+  {
+    "language": "Python",
+    "tab": "Conditionals",
+    "source": "python/score.py",
+    "initialLine": 6
+  },
+  {
+    "language": "Python",
+    "tab": "Build Houdini network editor titles",
+    "source": "python/nodegraphtitle.py",
+    "initialLine": 1
+  },
+  {
+    "language": "VEX",
+    "tab": "Point normals away from the origin",
+    "source": "vex/circleOutOfCenterNormals.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Set membership through a group binding",
+    "source": "vex/createAGroup_01.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Add the current point to a group",
+    "source": "vex/createAGroup_02.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Add the current primitive to a group",
+    "source": "vex/createAGroup_03.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Inspect an incomplete vertex-group call",
+    "source": "vex/createAGroup_04.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Set membership for an existing edge",
+    "source": "vex/createAGroup_05.vfl",
+    "initialLine": 3
+  },
+  {
+    "language": "VEX",
+    "tab": "Declare a local integer array",
+    "source": "vex/createAnArray_01.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Write a string-array attribute",
+    "source": "vex/createAnArray_02.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Declare a local string array",
+    "source": "vex/createAnArray_03.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Remove points outside camera image bounds",
+    "source": "vex/cutGeoFromCamera.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "List edge group names",
+    "source": "vex/EdgeGroupsList.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Append a sequence of integers",
+    "source": "vex/generateAnArray_01.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Build a reversed array of point positions",
+    "source": "vex/generateAnArray_02.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Inspect a viewport lighting override",
+    "source": "vex/geoWithoutLighting.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Expand a point group through a radius search",
+    "source": "vex/GroupExpand.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Offset a curve around its Y axis",
+    "source": "vex/helixCurve.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Add representative points and remove primitives",
+    "source": "vex/inCenterOfPrimitives.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Color primitives with even identifiers",
+    "source": "vex/iteratingOverArrayElements.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Sample a metaball field as a grayscale mask",
+    "source": "vex/maskFromMetaball.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Color primitives with fewer than four vertices",
+    "source": "vex/nGonsVisualize.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "List point group names",
+    "source": "vex/PointGroupsList.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Group points on the positive X side",
+    "source": "vex/pointsInAGroup.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Count points in a group",
+    "source": "vex/PointsInGroupCounter.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Collect point numbers from a group",
+    "source": "vex/PointsListInGroup.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "List primitive group names",
+    "source": "vex/PrimGroupsList.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Count primitives in a group",
+    "source": "vex/PrimitivesInGroupCounter.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Collect primitive numbers from a group",
+    "source": "vex/PrimitivesListInGroup.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Remap a point-based random value",
+    "source": "vex/remapRandom-11.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Shift camera-space depth while keeping image position",
+    "source": "vex/silhouetteRetain.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Compute a sorting angle around the X axis",
+    "source": "vex/sortOfRingPoints.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Test point group membership",
+    "source": "vex/ToTestAPointGroupMembership.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Test primitive group membership",
+    "source": "vex/ToTestAPrimitiveGroupMembership.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Test vertex group membership",
+    "source": "vex/ToTestAVertexGroupMembership.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "List vertex group names",
+    "source": "vex/VertexGroupsList.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Count vertices in a group",
+    "source": "vex/VerticesInGroupCounter.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Collect vertex numbers from a group",
+    "source": "vex/VerticesListInGroup.vfl",
+    "initialLine": 2
+  },
+  {
+    "language": "VEX",
+    "tab": "Request wireframe display for geometry",
+    "source": "vex/wireframeInViewport.vfl",
+    "initialLine": 2
+  }
+]
