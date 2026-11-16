@@ -1,0 +1,20 @@
+{
+  "language": "JavaScript",
+  "lessons": [
+    {
+      "tab": "Functions",
+      "source": "greeting.js",
+      "initialLine": 2
+    },
+    {
+      "tab": "Arrays & loops",
+      "source": "favorites.js",
+      "initialLine": 4
+    },
+    {
+      "tab": "Conditionals",
+      "source": "access.js",
+      "initialLine": 4
+    }
+  ]
+}

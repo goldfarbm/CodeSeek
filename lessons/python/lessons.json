@@ -1,0 +1,25 @@
+{
+  "language": "Python",
+  "lessons": [
+    {
+      "tab": "Functions",
+      "source": "greeting.py",
+      "initialLine": 2
+    },
+    {
+      "tab": "Lists & loops",
+      "source": "shopping.py",
+      "initialLine": 5
+    },
+    {
+      "tab": "Conditionals",
+      "source": "score.py",
+      "initialLine": 6
+    },
+    {
+      "tab": "Build Houdini network editor titles",
+      "source": "nodegraphtitle.py",
+      "initialLine": 1
+    }
+  ]
+}

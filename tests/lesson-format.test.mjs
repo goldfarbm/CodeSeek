@@ -2,10 +2,19 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { sourceLines, parseGuide, renderMarkdown } from '../lesson-format.mjs';
+import { parseCatalog } from '../lesson-catalog.mjs';
 
 test('the catalog includes every lesson pair and loads complete explanations', async () => {
   const root = new URL('../lessons/', import.meta.url);
-  const catalog = JSON.parse(await readFile(new URL('index.json', root), 'utf8'));
+  const catalog = [];
+  for (const folder of await readdir(root, { withFileTypes: true })) {
+    if (!folder.isDirectory()) continue;
+    for (const filename of await readdir(new URL(`${folder.name}/`, root))) {
+      if (!filename.endsWith('.json')) continue;
+      const path = `${folder.name}/${filename}`;
+      catalog.push(...parseCatalog(JSON.parse(await readFile(new URL(path, root), 'utf8')), path));
+    }
+  }
   const files = new Set((await readdir(root, { recursive: true })).map(path => path.replaceAll('\\', '/')));
   const pairs = [...files].filter(path => !path.endsWith('.md') && files.has(`${path}.md`));
   assert.ok(catalog.length > 0);

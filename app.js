@@ -1,4 +1,5 @@
 import { escapeHTML, sourceLines, parseGuide, renderMarkdown } from './lesson-format.mjs';
+import { loadCatalogs } from './lesson-catalog.mjs';
 
 let lessons = [];
 let lessonIndex = 0;
@@ -350,10 +351,10 @@ async function openLessonsFolder() {
   fileRequest++;
   folderStatus.textContent = 'Opening lessons…';
   try {
-    const catalog = JSON.parse(await fetchText('lessons/index.json'));
+    const { lessons: catalog, paths: catalogs } = await loadCatalogs(fetchText);
     // The browser cannot preset a native picker to the app's filesystem path.
     // Serve the bundled folder through the same explorer as user-selected files.
-    const paths = ['index.json', ...catalog.flatMap(entry => [entry.source, `${entry.source}.md`])];
+    const paths = [...catalogs, ...catalog.flatMap(entry => [entry.source, `${entry.source}.md`])];
     const files = paths.map(path => ({
       name: path.split('/').at(-1),
       webkitRelativePath: `lessons/${path}`,
@@ -413,8 +414,7 @@ function showFolder(files) {
 async function initialize() {
   status('Loading lesson catalog…');
   try {
-    const catalog = JSON.parse(await fetchText('lessons/index.json'));
-    if (!Array.isArray(catalog) || !catalog.length || catalog.some(entry => !entry.source || !entry.language || !entry.tab)) throw new Error('The lesson catalog must contain source, language, and tab entries.');
+    const { lessons: catalog } = await loadCatalogs(fetchText);
     lessons = catalog;
     const languages = [...new Set(lessons.map(entry => entry.language))];
     languageSelect.replaceChildren(...languages.map(language => {
@@ -431,7 +431,7 @@ async function initialize() {
       showDocument(activeDocument, selectedLine + 1);
     }
   } catch (error) {
-    status(`${error.message} Run CodeSeek through the local web server to load lesson files. You can still open a local folder.`);
+    status(`${error.message} You can still open a local folder.`);
   }
 }
 initialize();

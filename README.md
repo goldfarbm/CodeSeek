@@ -7,10 +7,10 @@ CodeSeek is a web-based coding tutorial companion. Select a code line on the lef
 From the project directory, run:
 
 ```sh
-python3 -m http.server 8000
+python3 server.py
 ```
 
-Open [CodeSeek](http://localhost:8000) in your browser. Use the web server rather than opening `index.html` directly: the app fetches its lesson files. No build step or package installation is needed. Choose a language, then use the Lesson dropdown or the Prev and Next buttons to browse its lessons. Google Fonts are optional; system fonts are used when unavailable.
+Open [CodeSeek](http://localhost:8000) in your browser. Use the web server rather than opening `index.html` directly: the app fetches its lesson files. The included Python server discovers lesson catalogs automatically. No build step or package installation is needed. Choose a language, then use the Lesson dropdown or the Prev and Next buttons to browse its lessons. Google Fonts are optional; system fonts are used when unavailable.
 
 ## Appearance
 
@@ -121,59 +121,50 @@ A Markdown file containing only a title and introduction can provide a general d
 
 If the model cannot access your files, supply their contents and save its Markdown output beside the source using the required name. Review the explanations for accuracy before sharing the tutorial.
 
-## Add a pair to the built-in lesson selector
+## Language catalogs and automatic discovery
 
-This is optional. The catalog currently includes 44 built-in pairs: three JavaScript lessons, four Python lessons (including the Houdini network editor title example), and 37 VEX examples. The folders follow this structure:
+Each language folder has its own JSON catalog. There is no central `lessons/index.json`:
 
 ```text
 lessons/
-├── index.json
 ├── javascript/
+│   ├── lessons.json
 │   ├── greeting.js
-│   ├── greeting.js.md
-│   ├── favorites.js
-│   ├── favorites.js.md
-│   ├── access.js
-│   └── access.js.md
-└── python/
-    ├── greeting.py
-    ├── greeting.py.md
-    ├── shopping.py
-    ├── shopping.py.md
-    ├── score.py
-    ├── score.py.md
-    ├── nodegraphtitle.py
-    └── nodegraphtitle.py.md
+│   └── greeting.js.md
+├── python/
+│   ├── lessons.json
+│   ├── greeting.py
+│   └── greeting.py.md
+└── vex/                  # Optional local lessons; excluded from Git
+    ├── lessons.json
+    ├── helixCurve.vfl
+    └── helixCurve.vfl.md
 ```
 
-The `lessons/vex/` folder contains the VEX pairs, for example:
+For example, `lessons/python/lessons.json` contains:
 
-```text
-lessons/vex/
-├── helixCurve.vfl
-├── helixCurve.vfl.md
-├── GroupExpand.vfl
-├── GroupExpand.vfl.md
-└── …
+```json
+{
+  "language": "Python",
+  "lessons": [
+    {
+      "tab": "Personal greeting",
+      "source": "greeting.py",
+      "initialLine": 2
+    }
+  ]
+}
 ```
 
-To make your pair available in the lesson dropdown:
+`language` names the language in the dropdown. `lessons` sets the lesson order. Each lesson has a `tab` title for the lesson dropdown and a `source` path **relative to that catalog’s language folder**. The companion path is obtained by appending `.md`. Optional `initialLine` selects the starting source line (default: 1). Titles and explanations remain in the Markdown companions.
 
-1. Put both files under `lessons/`, for example `lessons/python/the_code_file.py` and `lessons/python/the_code_file.py.md`.
-2. Append an object to the existing JSON array in `lessons/index.json`, separating it from the preceding object with a comma:
+To add a lesson, save its source and companion in the language folder and append an entry to that folder’s catalog. To add a language, create a new folder under `lessons/`, add its pairs, and add a catalog with the format above. Any `.json` filename works; use one catalog per language folder. Refresh the app to discover the changes. No app code or central list needs updating.
 
-   ```json
-   {
-     "language": "Python",
-     "tab": "Personal greeting",
-     "source": "python/the_code_file.py",
-     "initialLine": 2
-   }
-   ```
+Run **`python3 server.py`**, then open [CodeSeek](http://localhost:8000). Use `python3 server.py --port 8001` for a different port. The server binds to your own computer and serves the project folder regardless of your shell’s working directory.
 
-3. Save the files and refresh CodeSeek. Choose **Python**, then **Personal greeting**.
+The `/api/lessons` endpoint scans `lessons/*/*.json` on each request and returns the available catalog paths in alphabetical order. The app loads those catalogs at startup and when opening the bundled lessons explorer. JavaScript and Python catalogs are tracked in Git; the local VEX catalog stays in the ignored VEX folder. A fresh checkout therefore includes only available JavaScript and Python lessons.
 
-`source` is relative to `lessons/` and points to the code file. The app obtains the Markdown path by appending `.md`. `initialLine` is the one-based source line selected when the lesson opens. The catalog holds navigation metadata; tutorial titles and explanations belong in the companion Markdown.
+Browsers cannot enumerate server directories on their own. Opening `index.html` directly, the generic `python3 -m http.server`, or static hosting without the discovery endpoint will not discover catalogs. For hosting elsewhere, provide the same `/api/lessons` endpoint returning an array such as `["javascript/lessons.json", "python/lessons.json"]`. Local folder selection remains available if discovery fails.
 
 ## Troubleshooting
 
@@ -184,7 +175,7 @@ To make your pair available in the lesson dropdown:
 | A duplicate or out-of-range line error | Give each source line one unique heading numbered from 1 through the source-line count. The source remains viewable if its local companion is invalid. |
 | The same introduction on several lines | Those lines have no individual sections. Add the corresponding `## Line N: Title` headings and explanations. |
 | Edits are not visible | For local files, select the folder again. For built-in lessons, reselect the lesson; refresh after changing the catalog. |
-| Built-in lessons fail to load | Start the web server and check the catalog paths and the presence of both files. |
+| Built-in lessons fail to load | Start `python3 server.py` and check the language catalog paths and the presence of both files. |
 
 Pairing uses the complete relative path: two subfolders may each contain `example.py`, and each uses its own adjacent `example.py.md`. The browser picker omits empty folders. On small screens, the code and explanation panels stack vertically.
 
@@ -195,5 +186,6 @@ Before using a new pair, check that every source line has a matching, accurate e
 Parser and built-in lesson tests use Node's built-in test runner, without dependencies:
 
 ```sh
-node --test tests/lesson-format.test.mjs
+node --test tests/*.test.mjs
+python3 -m unittest discover -s tests -p "test_*.py"
 ```
